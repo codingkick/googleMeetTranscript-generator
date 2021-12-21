@@ -1,0 +1,24 @@
+{
+    "name" : "Transcript",
+    "version" : "1.0",
+    "description" : "Transcript generator",
+    "permissions" : [
+        "webRequest",
+        "activeTab",
+        "<all_urls>",
+        "tabs"
+    ],
+    "background" : {
+        "page" : "background.html",
+        "persistent" : true
+    },
+    "content_scripts" : [
+        {
+            "matches" : ["https://meet.google.com/*"],
+            "js" : ["app.js"],
+            "run_at" : "document_idle"
+        }
+    ],
+    "manifest_version" : 2,
+    "content_security_policy": "script-src 'self' https://www.gstatic.com/ https://*.firebaseio.com https://www.googleapis.com https://apis.google.com; object-src 'self'"
+}
