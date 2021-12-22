@@ -1,20 +1,18 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import {getDatabase,ref,onValue,set} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
-
+import { API_KEY,AUTH_DOMAIN,PROJECT_ID,STORAGE_BUCKET,MESSAGING_SENDER_ID,APP_ID } from "./var.js";
 
 const firebaseConfig = {
-apiKey: "AIzaSyCG1FNQ7OVymxvgy_CVILlctpzJuc3JJSk",
-authDomain: "transcript-generator-6fe0c.firebaseapp.com",
-projectId: "transcript-generator-6fe0c",
-storageBucket: "transcript-generator-6fe0c.appspot.com",
-messagingSenderId: "268654169176",
-appId: "1:268654169176:web:85498ade864b40a50bce2d"
+apiKey: API_KEY,
+authDomain: AUTH_DOMAIN,
+projectId: PROJECT_ID,
+storageBucket: STORAGE_BUCKET,
+messagingSenderId: MESSAGING_SENDER_ID,
+appId: APP_ID
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-
-
 
 
 
