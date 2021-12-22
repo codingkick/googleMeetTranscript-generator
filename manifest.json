@@ -3,14 +3,11 @@
     "version" : "1.0",
     "description" : "Transcript generator",
     "permissions" : [
-        "webRequest",
-        "activeTab",
-        "<all_urls>",
-        "tabs"
+        "tabs","https://meet.google.com/*","storage","notifications"
     ],
     "background" : {
         "page" : "background.html",
-        "persistent" : true
+        "persistent" : false
     },
     "content_scripts" : [
         {
