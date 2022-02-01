@@ -1,7 +1,10 @@
 console.log("working");
+let meetingId = window.location.href;
+console.log(meetingId);
 const observer = new MutationObserver((mutation)=>{
     if(document.body.querySelector("div[jscontroller='kAPMuc']"))
     {
+        meetingId = window.location.href;
         observer.disconnect();
         console.log("now disconnected");
         subtitleGeneration();
@@ -17,7 +20,8 @@ observer.observe(document.body,{
 
 function subtitleGeneration(){
     console.log("now going to generate subtitle");
-    const subtitle = document.body.querySelector("div[jscontroller='TEjq6e']");
+    // const subtitle = document.body.querySelector("div[jscontroller='TEjq6e']");
+    const subtitle = document.body.querySelector("div[jscontroller='yQffFe']");
     if(subtitle.style.display === "none")
     alert("turn on the cc");
     // else
@@ -28,10 +32,11 @@ function subtitleGeneration(){
         const subtitleObserver = new MutationObserver((mutation)=>{
             // console.log(mutation.length);
             let done = 0;
+            let speaker = "";
             mutation.forEach((record)=>{
                 if(record.removedNodes.length !== 0 && record.target.classList.contains("iTTPOb"))
                 {
-                    currTranscript = record.removedNodes[0].innerText + currTranscript;
+                    currTranscript = record.removedNodes[0].innerText+ currTranscript;
                     done = 1;
                 }
             })
@@ -41,7 +46,10 @@ function subtitleGeneration(){
                     // globalTranscript += currTranscript;
                     //sending these transcript to firebase : //
                     console.log(currTranscript);
-                    chrome.runtime.sendMessage({command:"firebase",subs:currTranscript},(res)=>{
+                    chrome.runtime.sendMessage({command:"firebase",data:{
+                        subs:currTranscript,
+                        meetingId : meetingId
+                    }},(res)=>{
                         console.log(res);
                     });
                     currTranscript = "";
